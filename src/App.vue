@@ -17,6 +17,11 @@
       NavBar,
       Footer,
     },
+    data() {
+      return {
+        isAdmin: false,
+      };
+    },
   };
 </script>
 <style>

@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.view";
-import Posts from "../views/Posts.view";
-import Photos from "../views/Photos.view";
-import Albums from "../views/Albums.view";
-import Post from "../components/Posts/DetailPost.vue";
-import Photo from "../components/Photos/DetailPhoto.vue";
-import Album from "../components/Albums/DetailAlbum.vue";
 
 Vue.use(VueRouter);
+
+// ini bisa masuk routes nya (buka komentarnya kalo mau test)
+// const isAdmin = "Posts";
+
+// ini ga bisa masuk routesnya
+const isAdmin = "";
 
 const routes = [
   {
@@ -19,37 +19,50 @@ const routes = [
   {
     path: "/posts",
     name: "Posts",
-    component: Posts,
+    component: () =>
+      import(/* webpackChunkName: "Posts" */ "../views/Posts.view"),
+    beforeEnter: (to, from, next) => {
+      if (to.name !== isAdmin) {
+        alert("Maap bang cuma admin yang boleh nih");
+        next({ name: "Home" });
+      } else next();
+    },
   },
   {
     path: "/posts/:id",
     name: "Post",
-    component: Post,
+    component: () =>
+      import(
+        /* webpackChunkName: "PostId" */ "../components/Posts/DetailPost.vue"
+      ),
   },
   {
     path: "/albums",
     name: "Albums",
-    component: Albums,
+    component: () =>
+      import(/* webpackChunkName: "Albums" */ "../views/Albums.view"),
   },
   {
     path: "/albums/:id",
     name: "Album",
-    component: Album,
-  },
-  {
-    path: "/albums/:id",
-    name: "Album",
-    component: Album,
+    component: () =>
+      import(
+        /* webpackChunkName: "AlbumId" */ "../components/Albums/DetailAlbum.vue"
+      ),
   },
   {
     path: "/Photos",
     name: "Photos",
-    component: Photos,
+    component: () =>
+      import(/* webpackChunkName: "Photos" */ "../views/Photos.view"),
   },
   {
     path: "/Photos/:id",
     name: "Photo",
-    component: Photo,
+    component: () =>
+      import(
+        /* webpackChunkName: "PhotoId" */ "../components/Photos/DetailPhoto.vue"
+      ),
   },
 ];
 
