@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
+  <div id="app" class="relative min-h-screen">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <nav-bar />
     </div>
-    <router-view/>
+    <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+  import NavBar from "@/components/NavBar/NavBar.vue";
+  import Footer from "@/components/Footer/Footer.vue";
+  export default {
+    name: "App",
+    components: {
+      NavBar,
+      Footer,
+    },
+  };
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+  }
 
-#nav {
-  padding: 30px;
-}
+  #nav {
+    padding: 30px;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  #nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  #nav a.router-link-exact-active {
+    color: #42b983;
+  }
+
+  .side-color {
+    color: #50be8c;
+  }
+
+  .sub-color {
+    color: #566371;
+  }
+
+  .post-title {
+    color: #343f4a;
+  }
+
+  .post-sub-title {
+    color: #566371;
+  }
+
+  .button-color {
+    background-color: #50be8c;
+  }
 </style>
